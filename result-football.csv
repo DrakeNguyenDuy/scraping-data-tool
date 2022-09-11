@@ -1,0 +1,61 @@
+HomeTeam,AwayTeam,TimeStart,ScoreForWinner,ScoreForLoser,Referee,Venue,Attendance,Round,Status
+Manchester Utd,Arsenal,04.09.2022 22:30,3,1, Tierney P. (Eng),Old Trafford (Manchester),74 000,Premier League - Round 6,Finished
+Brighton,Leicester,04.09.2022 20:00,5,2, Harrington T. (Eng),Amex Stadium (Brighton),31 185,Premier League - Round 6,Finished
+Aston Villa,Manchester City,03.09.2022 23:30,1,1, Hooper S. (Eng),Villa Park (Birmingham),41 830,Premier League - Round 6,Finished
+Brentford,Leeds,03.09.2022 21:00,5,2, Jones R. (Eng),Brentford Community Stadium (London),16 946,Premier League - Round 6,Finished
+Chelsea,West Ham,03.09.2022 21:00,2,1, Madley A. (Eng),Stamford Bridge (London),39 923,Premier League - Round 6,Finished
+Newcastle,Crystal Palace,03.09.2022 21:00,0,0, Salisbury M. (Eng),St. James' Park (Newcastle),51 863,Premier League - Round 6,Finished
+Nottingham,Bournemouth,03.09.2022 21:00,2,3, Oliver M. (Eng),City Ground (Nottingham),28 720,Premier League - Round 6,Finished
+Tottenham,Fulham,03.09.2022 21:00,2,1, Attwell S. (Eng),Tottenham Hotspur Stadium (London),61 641,Premier League - Round 6,Finished
+Wolves,Southampton,03.09.2022 21:00,1,0, Brooks J. (Eng),Molineux Stadium (Wolverhampton),30 546,Premier League - Round 6,Finished
+Everton,Liverpool,03.09.2022 18:30,0,0, Taylor A. (Eng),Goodison Park (Liverpool),39 240,Premier League - Round 6,Finished
+Leicester,Manchester Utd,02.09.2022 02:00,0,1, Pawson C. (Eng),King Power Stadium (Leicester),32 226,Premier League - Round 5,Finished
+Liverpool,Newcastle,01.09.2022 02:00,2,1, Marriner A. (Eng),Anfield (Liverpool),53 316,Premier League - Round 5,Finished
+West Ham,Tottenham,01.09.2022 01:45,1,1, Bankes P. (Eng),London Stadium (London),62 450,Premier League - Round 5,Finished
+Arsenal,Aston Villa,01.09.2022 01:30,2,1, Jones R. (Eng),Emirates Stadium (London),60 012,Premier League - Round 5,Finished
+Bournemouth,Wolves,01.09.2022 01:30,0,0, Taylor A. (Eng),Vitality Stadium (Bournemouth),10 113,Premier League - Round 5,Finished
+Manchester City,Nottingham,01.09.2022 01:30,6,0, Tierney P. (Eng),Etihad Stadium (Manchester),53 409,Premier League - Round 5,Finished
+Leeds,Everton,31.08.2022 02:00,1,1, England D. (Eng),Elland Road (Leeds),36 338,Premier League - Round 5,Finished
+Southampton,Chelsea,31.08.2022 01:45,2,1, Oliver M. (Eng),St. Mary's Stadium (Southampton),,Premier League - Round 5,Finished
+Crystal Palace,Brentford,31.08.2022 01:30,1,1, Hooper S. (Eng),Selhurst Park (London),25 043,Premier League - Round 5,Finished
+Fulham,Brighton,31.08.2022 01:30,2,1, Bramall T. (Eng),Craven Cottage (London),22 224,Premier League - Round 5,Finished
+Nottingham,Tottenham,28.08.2022 22:30,0,2, Pawson C. (Eng),City Ground (Nottingham),29 296,Premier League - Round 4,Finished
+Aston Villa,West Ham,28.08.2022 20:00,0,1, Coote D. (Eng),Villa Park (Birmingham),41 796,Premier League - Round 4,Finished
+Wolves,Newcastle,28.08.2022 20:00,1,1, Bankes P. (Eng),Molineux Stadium (Wolverhampton),31 000,Premier League - Round 4,Finished
+Arsenal,Fulham,27.08.2022 23:30,2,1, Gillett J. (Aus),Emirates Stadium (London),60 164,Premier League - Round 4,Finished
+Brentford,Everton,27.08.2022 21:00,1,1, Brooks J. (Eng),Brentford Community Stadium (London),17 009,Premier League - Round 4,Finished
+Brighton,Leeds,27.08.2022 21:00,1,0, Salisbury M. (Eng),Amex Stadium (Brighton),30 953,Premier League - Round 4,Finished
+Chelsea,Leicester,27.08.2022 21:00,2,1, Tierney P. (Eng),Stamford Bridge (London),39 953,Premier League - Round 4,Finished
+Liverpool,Bournemouth,27.08.2022 21:00,9,0, Attwell S. (Eng),Anfield (Liverpool),53 328,Premier League - Round 4,Finished
+Manchester City,Crystal Palace,27.08.2022 21:00,4,2, England D. (Eng),Etihad Stadium (Manchester),53 112,Premier League - Round 4,Finished
+Southampton,Manchester Utd,27.08.2022 18:30,0,1, Madley A. (Eng),St. Mary's Stadium (Southampton),31 196,Premier League - Round 4,Finished
+Manchester Utd,Liverpool,23.08.2022 02:00,2,1, Oliver M. (Eng),Old Trafford (Manchester),,Premier League - Round 3,Finished
+Newcastle,Manchester City,21.08.2022 22:30,3,3, Gillett J. (Aus),St. James' Park (Newcastle),52 258,Premier League - Round 3,Finished
+Leeds,Chelsea,21.08.2022 20:00,3,0, Attwell S. (Eng),Elland Road (Leeds),36 372,Premier League - Round 3,Finished
+West Ham,Brighton,21.08.2022 20:00,0,2, Taylor A. (Eng),London Stadium (London),62 449,Premier League - Round 3,Finished
+Bournemouth,Arsenal,20.08.2022 23:30,0,3, Pawson C. (Eng),Vitality Stadium (Bournemouth),10 423,Premier League - Round 3,Finished
+Crystal Palace,Aston Villa,20.08.2022 21:00,3,1, Madley A. (Eng),Selhurst Park (London),22 012,Premier League - Round 3,Finished
+Everton,Nottingham,20.08.2022 21:00,1,1, Marriner A. (Eng),Goodison Park (Liverpool),39 271,Premier League - Round 3,Finished
+Fulham,Brentford,20.08.2022 21:00,3,2, Bankes P. (Eng),Craven Cottage (London),21 798,Premier League - Round 3,Finished
+Leicester,Southampton,20.08.2022 21:00,1,2, Salisbury M. (Eng),King Power Stadium (Leicester),30 850,Premier League - Round 3,Finished
+Tottenham,Wolves,20.08.2022 18:30,1,0, Hooper S. (Eng),Tottenham Hotspur Stadium (London),61 298,Premier League - Round 3,Finished
+Liverpool,Crystal Palace,16.08.2022 02:00,1,1, Tierney P. (Eng),Anfield (Liverpool),52 970,Premier League - Round 2,Finished
+Chelsea,Tottenham,14.08.2022 22:30,2,2, Taylor A. (Eng),Stamford Bridge (London),39 946,Premier League - Round 2,Finished
+Nottingham,West Ham,14.08.2022 20:00,1,0, Jones R. (Eng),City Ground (Nottingham),29 281,Premier League - Round 2,Finished
+Brentford,Manchester Utd,13.08.2022 23:30,4,0, Attwell S. (Eng),Brentford Community Stadium (London),17 250,Premier League - Round 2,Finished
+Arsenal,Leicester,13.08.2022 21:00,4,2, England D. (Eng),Emirates Stadium (London),60 033,Premier League - Round 2,Finished
+Brighton,Newcastle,13.08.2022 21:00,0,0, Scott G. (Eng),Amex Stadium (Brighton),31 552,Premier League - Round 2,Finished
+Manchester City,Bournemouth,13.08.2022 21:00,4,0, Coote D. (Eng),Etihad Stadium (Manchester),53 453,Premier League - Round 2,Finished
+Southampton,Leeds,13.08.2022 21:00,2,2, Harrington T. (Eng),St. Mary's Stadium (Southampton),,Premier League - Round 2,Finished
+Wolves,Fulham,13.08.2022 21:00,0,0, Brooks J. (Eng),Molineux Stadium (Wolverhampton),31 178,Premier League - Round 2,Finished
+Aston Villa,Everton,13.08.2022 18:30,2,1, Oliver M. (Eng),Villa Park (Birmingham),41 883,Premier League - Round 2,Finished
+West Ham,Manchester City,07.08.2022 22:30,0,2, Oliver M. (Eng),London Stadium (London),62 443,Premier League - Round 1,Finished
+Leicester,Brentford,07.08.2022 20:00,2,2, Gillett J. (Aus),King Power Stadium (Leicester),31 794,Premier League - Round 1,Finished
+Manchester Utd,Brighton,07.08.2022 20:00,1,2, Tierney P. (Eng),Old Trafford (Manchester),73 711,Premier League - Round 1,Finished
+Everton,Chelsea,06.08.2022 23:30,0,1, Pawson C. (Eng),Goodison Park (Liverpool),39 254,Premier League - Round 1,Finished
+Bournemouth,Aston Villa,06.08.2022 21:00,2,0, Bankes P. (Eng),Vitality Stadium (Bournemouth),10 000,Premier League - Round 1,Finished
+Leeds,Wolves,06.08.2022 21:00,2,1, Jones R. (Eng),Elland Road (Leeds),36 347,Premier League - Round 1,Finished
+Newcastle,Nottingham,06.08.2022 21:00,2,0, Hooper S. (Eng),St. James' Park (Newcastle),52 245,Premier League - Round 1,Finished
+Tottenham,Southampton,06.08.2022 21:00,4,1, Marriner A. (Eng),Tottenham Hotspur Stadium (London),61 732,Premier League - Round 1,Finished
+Fulham,Liverpool,06.08.2022 18:30,2,2, Madley A. (Eng),Craven Cottage (London),25 000,Premier League - Round 1,Finished
+Crystal Palace,Arsenal,06.08.2022 02:00,0,2, Taylor A. (Eng),Selhurst Park (London),25 286,Premier League - Round 1,Finished
