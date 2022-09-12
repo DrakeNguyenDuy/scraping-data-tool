@@ -5,11 +5,13 @@
   "main": "scraping.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node crawl.js"
+    "start": "node index.js",
+    "script": "node scraping-league-by-years.js"
   },
   "author": "Nguyễn Dũy Long",
   "license": "MIT",
   "dependencies": {
-    "puppeteer": "^17.1.3"
+    "puppeteer": "^17.1.3",
+    "ts-node": "^10.9.1"
   }
 }

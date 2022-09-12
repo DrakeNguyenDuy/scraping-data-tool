@@ -1,29 +1,22 @@
-const puppeteer = require("puppeteer");
 const fs = require("fs");
-const header =
-  "HomeTeam,AwayTeam,TimeStart,ScoreForWinner,ScoreForLoser,Referee,Venue,Attendance,Round,Status\r\n";
-fs.writeFile("result-football.csv", header, "utf8", () => {});
-(async () => {
-  const browser = await puppeteer.launch({ headless: false });
-  const page = await browser.newPage();
-  await page.goto(
-    "https://www.flashscore.com/football/england/premier-league/results/"
-  );
-  const idList = await page.evaluate(() => {
-    let idMatchs = [];
-    let items = document.querySelectorAll(".event__match");
-    items.forEach((item) => {
-      idMatchs.push(item.getAttribute("id"));
-    });
-    return idMatchs;
-  });
-  page.close();
-  const order = 0;
-  scrapingResutByMatch(idList, browser, order);
-})();
-//get result by match
-const scrapingResutByMatch = async (listID, browser, order) => {
+const sm = require("./scraping-main");
+/*
+  function scrapingResutByMatch() used to sraping result by the match with paramaster
+  - listID: list id of all math in a year
+  - browser: browser passed from function scrapingMain
+  - listLink: list of all league all years
+  - index: index current link league by year
+*/
+const scrapingResutByMatch = async (
+  listID,
+  browser,
+  order,
+  listLink,
+  index
+) => {
+  //generate a new page 
   let newPage = await browser.newPage();
+  //slice string id beacause it is have format g_1_xxxxxx
   const id = listID[order].slice(4);
   console.log(`Scraping to page with id ${id}`);
   try {
@@ -35,8 +28,8 @@ const scrapingResutByMatch = async (listID, browser, order) => {
     );
     const result = await newPage.evaluate(
       (order, listID) => {
-        let row = "";
-        let homeTeam = "";
+        let row = "";//new row
+        let homeTeam = ""; //name home team
         try {
           homeTeam = document.querySelector(
             ".duelParticipant__home .participant__participantNameWrapper .participant__participantName .participant__participantName"
@@ -45,7 +38,7 @@ const scrapingResutByMatch = async (listID, browser, order) => {
           console.log("error while get home_team");
         }
         row += `${homeTeam},`;
-        let awayTeam = "";
+        let awayTeam = ""; // name away team
         try {
           awayTeam = document.querySelector(
             ".duelParticipant__away .participant__participantNameWrapper .participant__participantName .participant__participantName"
@@ -54,7 +47,7 @@ const scrapingResutByMatch = async (listID, browser, order) => {
           console.log("error while get away_team");
         }
         row += `${awayTeam},`;
-        let timeStart = "";
+        let timeStart = ""; // time match started
         try {
           timeStart = document.querySelector(
             ".duelParticipant__startTime div"
@@ -63,7 +56,7 @@ const scrapingResutByMatch = async (listID, browser, order) => {
           console.log("error while get time start");
         }
         row += `${timeStart},`;
-        let scoreForWinner = "";
+        let scoreForWinner = ""; // score for winner
         try {
           scoreForWinner = document.querySelector(
             ".detailScore__matchInfo .detailScore__wrapper"
@@ -72,7 +65,7 @@ const scrapingResutByMatch = async (listID, browser, order) => {
           console.log("error while get score for winner");
         }
         row += `${scoreForWinner},`;
-        let scoreFosLoser = "";
+        let scoreFosLoser = ""; // score for loser
         try {
           scoreFosLoser = document.querySelector(
             ".detailScore__matchInfo .detailScore__wrapper"
@@ -82,28 +75,28 @@ const scrapingResutByMatch = async (listID, browser, order) => {
         }
         row += `${scoreFosLoser},`;
         const mathInfo = document.getElementsByClassName("mi__item__val");
-        let referee = "";
+        let referee = ""; // referee of the match
         try {
           referee = mathInfo[0].textContent;
         } catch (error) {
           console.log("error while get referee");
         }
         row += `${referee},`;
-        let venue = "";
+        let venue = ""; // location of the match
         try {
           venue = mathInfo[1].textContent;
         } catch (error) {
           console.log("error while get venue");
         }
         row += `${venue},`;
-        let attendance = "";
+        let attendance = ""; //attendances to venue
         try {
           attendance = mathInfo[2].textContent;
         } catch (error) {
           console.log("error while get attendance");
         }
         row += `${attendance},`;
-        let round = "";
+        let round = ""; //name roud 
         try {
           round = document.querySelector(
             ".tournamentHeader__country a"
@@ -112,7 +105,7 @@ const scrapingResutByMatch = async (listID, browser, order) => {
           console.log("error while get round");
         }
         row += `${round},`;
-        let status = "";
+        let status = ""; //status of the match
         try {
           status = document.querySelector(
             ".fixedHeaderDuel__detailStatus"
@@ -121,6 +114,11 @@ const scrapingResutByMatch = async (listID, browser, order) => {
           console.log("error while get status");
         }
         row += `${status}\r\n`;
+        /*
+          check if all id inside list visited ?
+          if its not complete then a object inclues status isContinue: true and data => continue visit
+          or if all visited then retuen a object with status isContinue: false and data => next steps 
+        */
         if (order + 1 !== listID.length) {
           return {
             isContinue: true,
@@ -136,15 +134,25 @@ const scrapingResutByMatch = async (listID, browser, order) => {
       order,
       listID
     );
+    //write new line into file
     fs.appendFileSync("result-football.csv", result.data);
+    /*
+      check if isContinue is true then continue scraping result matchs
+      and if isContinue is false then close browser, scraping new year
+      final: all complete then log string "finish"
+    */
     if (result.isContinue) {
       newPage.close();
-      scrapingResutByMatch(listID, browser, order + 1);
+      scrapingResutByMatch(listID, browser, order + 1, listLink, index);
+    } else if (result.isContinue === false && index < listLink.length - 1) {
+      browser.close();
+      sm.scrapingMain(listLink, index + 1);
     } else {
-      console.log("finish!");
+      console.log("finish all!");
     }
   } catch (error) {
     console.log("what's is error: ", error);
     browser.close();
   }
 };
+exports.scrapingResutByMatch = scrapingResutByMatch;
