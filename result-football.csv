@@ -1,4 +1,4 @@
-LeagueName,HomeTeam,AwayTeam,TimeStart,Date,ScoreForWinner,ScoreForLoser,Referee,Venue,Attendance,Round,Status
+LeagueName,HomeTeam,AwayTeam,TimeStart,Date,Gwinner,GLoser,Referee,Venue,Attendance,Round,Status
 Premier League ,Manchester Utd,Arsenal,22:30,04.09.2022,3,1, Tierney P. (Eng),Old Trafford (Manchester),74 000,Round 6,Finished
 Premier League ,Brighton,Leicester,20:00,04.09.2022,5,2, Harrington T. (Eng),Amex Stadium (Brighton),31 185,Round 6,Finished
 Premier League ,Aston Villa,Manchester City,23:30,03.09.2022,1,1, Hooper S. (Eng),Villa Park (Birmingham),41 830,Round 6,Finished
