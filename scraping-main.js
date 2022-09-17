@@ -1,16 +1,18 @@
 const puppeteer = require("puppeteer");
 const sbm = require("./scraping-by-match");
+const uls = require("./write-file-pause");
 const scrapingMain = async (listLink, index) => {
-  const browser = await puppeteer.launch({ headless: false, ignoreHTTPSErrors: true });
+  const browser = await puppeteer.launch({
+    headless: false,
+    ignoreHTTPSErrors: true,
+  });
   const page = await browser.newPage();
-  await page.setUserAgent("Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.1.4322)")
+  await page.setUserAgent(
+    "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.1.4322)"
+  );
   await page.goto(`https://www.flashscore.com${listLink[index]}results/`, {
     waitUntil: "networkidle0", // using for single application
   });
-  //wait for link show more ready
-  // await page.waitForSelector("a.event__more.event__more--static", {
-  //   visible: true,
-  // });
   //get element link show more
   const [el] = await page.$x('//*[@id="live-table"]/div[1]/div/div/a');
   if (el !== undefined) {
@@ -31,11 +33,15 @@ const scrapingMain = async (listLink, index) => {
     items.forEach((item) => {
       idMatchs.push(item.getAttribute("id"));
     });
-    console.log(idMatchs);
     return idMatchs;
   });
   //close page show all match in year
   page.close();
+  // console.log("link được ghi vào ", listLink[index].slice(33, listLink[index].length - 1));
+  uls.updateLineSpecific(
+    listLink[index].slice(33, listLink[index].length - 1),
+    0
+  );
   /*
     method below to scraping data resul of the match
     with index start is 0
