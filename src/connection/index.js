@@ -14,15 +14,13 @@ const mysql = require("mysql2");
 //   }
 // };
 let pool = null;
-const instance = async () => {
-  if (instance === null) {
-    pool = mysql.createPool({
-      host: "localhost",
-      user: "root",
-      database: "dw_result_football",
-      password: "1234",
-    });
-  }
-  return pool;
-};
+const instance = mysql
+  .createPool({
+    host: "localhost",
+    user: "root",
+    database: "dw_result_football",
+    password: "1234",
+  })
+  .promise();
+
 exports.instance = instance;
