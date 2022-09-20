@@ -51,6 +51,9 @@ const mysql = require("mysql2");
     rows[0].branch,
     name_file,
     rows[0].source_location,
-    rows[0].id_source_name
+    rows[0].id_source_name,
+    rows[0].ftp,
+    rows[0].user_name,
+    rows[0].password
   );
 })();

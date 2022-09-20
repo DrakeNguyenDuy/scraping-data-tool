@@ -1,6 +1,7 @@
 const fs = require("fs");
 const stringQuery = require("../../sql/query_string");
 const pool = require("../connection/index");
+const uftf = require("../scraping_data/upload_file_to_ftp");
 /*
   function scrapingResutByMatch() used to sraping result by the match with paramaster
   - listID: list id of all math in a year
@@ -15,7 +16,10 @@ const scrapingResutByMatch = async (
   source_name,
   name_file,
   source_location,
-  id_source_name
+  id_source_name,
+  ftp,
+  user_name,
+  password
 ) => {
   const instance = pool.instance;
   const [rows, fiedls] = await instance.query(
@@ -151,7 +155,10 @@ const scrapingResutByMatch = async (
         source_name,
         name_file,
         source_location,
-        id_source_name
+        id_source_name,
+        ftp,
+        user_name,
+        password
       );
     } else {
       console.log("finish all!");
@@ -162,6 +169,13 @@ const scrapingResutByMatch = async (
           name_file,
           `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`
         )
+      );
+      uftf.uploadFileToFtpServer(
+        ftp,
+        user_name,
+        password,
+        source_location,
+        name_file
       );
       console.log("=>", rows);
       browser.close();

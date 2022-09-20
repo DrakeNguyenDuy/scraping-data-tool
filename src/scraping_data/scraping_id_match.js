@@ -9,7 +9,10 @@ const scraping_id_match_by_specfific_day = async (
   branch,
   file_name,
   source_location,
-  id_source_name
+  id_source_name,
+  ftp,
+  user_name,
+  password
   //   ...date
 ) => {
   //   const matchDays = date;
@@ -52,6 +55,17 @@ const scraping_id_match_by_specfific_day = async (
     with index start is 0
   */
   const order = 0;
-  sbm.scrapingResutByMatch(idList, browser, order, source_name, file_name, source_location, id_source_name);
+  sbm.scrapingResutByMatch(
+    idList,
+    browser,
+    order,
+    source_name,
+    file_name,
+    source_location,
+    id_source_name,
+    ftp,
+    user_name,
+    password
+  );
 };
 exports.scraping_id_match_by_specfific_day = scraping_id_match_by_specfific_day;
