@@ -15,7 +15,7 @@ CREATE TABLE scraping_log (
     id_config INTEGER not null,
     file_name VARCHAR(50) not null,
     date_log DATE not null,
-    status INTEGER not null
+    status INTEGER default 0
 );
 
 /*create table contactor: contactor who is responsible*/
@@ -39,7 +39,7 @@ branch varchar(100) default ""
 
 /*create table result football */
 CREATE TABLE resut_football (
-    id INTEGER AUTO_INCREMENT primary key,
+    id_match varchar(20) primary key,
     name_league VARCHAR(50) NOT NULL,
     home_team VARCHAR(50) NOT NULL,
     away_team VARCHAR(50) NOT NULL,
@@ -62,5 +62,6 @@ insert data to table
 */
 insert into contactor (full_name,user_name, password) values ("Nguyễn Dũy Long", "long-ftp", "1234");
 insert into source_name(source_name) value ("www.flashscore.com");
-insert into branch_source_name (id_source_name, name_branch, branch ) values (1, "PE-2022-2023", "/football/england/premier-league-2022-2023/results/");
+insert into branch_source_name (id_source_name, name_branch, branch ) values (1, "PEAR-2022-2023", "/football/england/premier-league-2022-2023/results/");
+insert into branch_source_name (id_source_name, name_branch, branch ) values (1, "PEM-2022-2023", "/match/");
 insert into configration (id_source_name, source_location, ftp, id_contact) values (1, 'D:/js/scraping/ver-01/results', 'ftp://ftpupload.net',1 );

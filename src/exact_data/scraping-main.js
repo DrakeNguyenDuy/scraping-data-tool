@@ -15,6 +15,8 @@ const scrapingMain = async (listLink, index) => {
   });
   //get element link show more
   const [el] = await page.$x('//*[@id="live-table"]/div[1]/div/div/a');
+  //loops to can not get element link anymore
+  //when can not get link element load more then break loops and out loops
   if (el !== undefined) {
     while ((await el.getProperties("textContent")).values() !== null) {
       try {
@@ -24,8 +26,6 @@ const scrapingMain = async (listLink, index) => {
       }
     }
   }
-  //loops to can not get element link anymore
-  //when can not get link element load more then break loops and out loops
   //get id list of match all year
   const idList = await page.evaluate(() => {
     let idMatchs = [];
