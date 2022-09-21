@@ -13,7 +13,6 @@ const mysql = require("mysql2");
 //     return connection;
 //   }
 // };
-let pool = null;
 const instance = mysql
   .createPool({
     host: "localhost",
