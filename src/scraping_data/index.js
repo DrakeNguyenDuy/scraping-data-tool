@@ -1,18 +1,13 @@
 const fs = require("fs");
 const queryString = require("../../sql/query_string");
 const sim = require("./scraping_id_match");
+const poolIns = require("../connection/index")
 /*
  */
-const mysql = require("mysql2");
 (async () => {
   //name contactor
   const full_name = "Nguyễn Dũy Long";
-  const pool = mysql.createPool({
-    host: "localhost",
-    user: "root",
-    database: "dw_result_football",
-    password: "1234",
-  });
+  const pool = poolIns.instance
   //date current
   const date = new Date();
   const day = date.getDate();
@@ -51,6 +46,9 @@ const mysql = require("mysql2");
     rows[0].branch,
     name_file,
     rows[0].source_location,
-    rows[0].id_source_name
+    rows[0].id_source_name,
+    rows[0].ftp,
+    rows[0].user_name,
+    rows[0].password
   );
 })();

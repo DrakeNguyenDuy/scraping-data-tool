@@ -1,7 +1,5 @@
 const fs = require("fs");
-const stringQuery = require("../../sql/query_string");
-const pool = require("../connection/index");
-const uftf = require("../scraping_data/upload_file_to_ftp");
+const sm = require("./scraping-main");
 /*
   function scrapingResutByMatch() used to sraping result by the match with paramaster
   - listID: list id of all math in a year
@@ -13,27 +11,21 @@ const scrapingResutByMatch = async (
   listID,
   browser,
   order,
-  source_name,
-  name_file,
-  source_location,
-  id_source_name,
-  ftp,
-  user_name,
-  password
+  listLink,
+  index
 ) => {
-  const instance = pool.instance;
-  const [rows, fiedls] = await instance.query(
-    stringQuery.getBranchPEM("PEM-2022-2023")
-  );
   //generate a new page
   let newPage = await browser.newPage();
   //slice string id beacause it is have format g_1_xxxxxx
   const id = listID[order].slice(4);
   console.log(`Scraping to page with id ${id}`);
   try {
-    await newPage.goto(`https://${source_name}${rows[0].branch}${id}`, {
-      waitUntil: "networkidle0",
-    });
+    await newPage.goto(
+      `https://www.flashscore.com/match/${id}/#/match-summary/match-summary`,
+      {
+        waitUntil: "networkidle0",
+      }
+    );
     const result = await newPage.evaluate(
       (order, listID) => {
         let row = ""; //new row
@@ -140,7 +132,7 @@ const scrapingResutByMatch = async (
       listID
     );
     //write new line into file
-    fs.appendFileSync(`${source_location}/${name_file}`, result.data);
+    fs.appendFileSync("D:/js/scraping/ver-01/results/all.csv", result.data);
     /*
       check if isContinue is true then continue scraping result matchs
       and if isContinue is false then close browser, scraping new year
@@ -148,37 +140,12 @@ const scrapingResutByMatch = async (
     */
     if (result.isContinue) {
       newPage.close();
-      scrapingResutByMatch(
-        listID,
-        browser,
-        order + 1,
-        source_name,
-        name_file,
-        source_location,
-        id_source_name,
-        ftp,
-        user_name,
-        password
-      );
+      scrapingResutByMatch(listID, browser, order + 1, listLink, index);
+    } else if (result.isContinue === false && index < listLink.length - 1) {
+      browser.close();
+      sm.scrapingMain(listLink, index + 1);
     } else {
       console.log("finish all!");
-      const date = new Date();
-      const [rows, fiedls] = await instance.execute(
-        stringQuery.insertLog(
-          id_source_name,
-          name_file,
-          `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`
-        )
-      );
-      uftf.uploadFileToFtpServer(
-        ftp,
-        user_name,
-        password,
-        source_location,
-        name_file
-      );
-      console.log("=>", rows);
-      browser.close();
     }
   } catch (error) {
     console.log("what's is error: ", error);
