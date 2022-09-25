@@ -25,10 +25,19 @@ venue = nullif(@vvenue, 'unknown'), attendance = nullif(@vattendance, 'unknown')
 
 
 load data infile "C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/all copy.csv" 
-into table result_football fields terminated by ","  lines terminated by "\n" ignore 1 rows (@id_match, @name_league, @home_team, @away_team, @time_start,
-@match_day, @goal_home_team, @goal_away_team, @referee, @venue, @attendance, @round, @status) set id_match= if(@id_match='', 'unknown',@id_match )
-,name_league= if(@name_league='', 'unknown',@name_league ), home_team = if(@home_team='', 'unknown',@home_team)
-, away_team = if(@away_team = '', 'unknow', @away_team), time_start = if(@time_start = '', null, @time_start) ,match_day= if(@match_day ='', null, @match_day)
-, goal_home_team = if(@goal_home_team ='', 0, @goal_home_team), goal_away_team = if(@goal_away_team, 0, @goal_away_team)
-, referee = if(@referee='','unknown', @referee), venue = if(@venue='', 'unknown', @venue), attendance = if(@attendance='', 'unknown', @attendance)
-, round = if(@round = '', 'unknown', @round), status = if(@status='', 'unknown', @status);
+into table result_football fields terminated by ","  lines terminated by "\n" ignore 1 rows 
+(@id_match, @name_league, @home_team, @away_team, @time_start,
+@match_day, @goal_home_team, @goal_away_team, @referee, @venue, @attendance, @round, @status) 
+set id_match= if(@id_match='', 'unknown',@id_match )
+,name_league= if(@name_league='', 'unknown',@name_league ),
+home_team = if(@home_team='', 'unknown',@home_team),
+away_team = if(@away_team = '', 'unknow', @away_team), 
+time_start = if(@time_start = '', null, @time_start) ,
+match_day= if(@match_day ='', null, @match_day),
+goal_home_team = if(@goal_home_team ='', 0, @goal_home_team), 
+goal_away_team = if(@goal_away_team, 0, @goal_away_team),
+referee = if(@referee='','unknown', @referee),
+venue = if(@venue='', 'unknown', @venue), 
+attendance = if(@attendance='', 'unknown', @attendance),
+round = if(@round = '', 'unknown', @round), 
+status = if(@status='', 'unknown', @status);
