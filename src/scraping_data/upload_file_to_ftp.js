@@ -9,7 +9,7 @@ const uploadFileToFtpServer = async (host, user, password, path, name_file) => {
       user,
       password,
     });
-    await client.uploadFrom(`${path}/${name_file}`, `/results/${name_file}`).then(()=>{
+    await client.uploadFrom(`${path}/${name_file}`, `/${name_file}`).then(()=>{
         console.log("Uploaded to ftp server");
     });
   } catch (error) {
@@ -17,3 +17,4 @@ const uploadFileToFtpServer = async (host, user, password, path, name_file) => {
   }
 };
 exports.uploadFileToFtpServer = uploadFileToFtpServer;
+// /results

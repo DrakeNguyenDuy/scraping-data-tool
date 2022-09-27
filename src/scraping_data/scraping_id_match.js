@@ -34,15 +34,15 @@ const scraping_id_match_by_specfific_day = async (
     // const day_month = `${date.getDate()}.${
     //   date.getMonth() + 1 > 9 ? date.getMonth() + 1 : `0${date.getMonth() + 1}`
     // }.`;
-    const day_month = "18.09.";
+    const day_month = "28.08.";
     let items = document.querySelectorAll(".event__match");
     const time = document.querySelectorAll("div.event__time");
     items.forEach((item, index) => {
       /*
-        check is match day
-        Data on flashscore: 18.09. 22:30
-        ex: day_month = 18.09. and time[index].textContent.split(" ")[0]=18.09. then result is true
-        */
+          check is match day
+          Data on flashscore: 18.09. 22:30
+          ex: day_month = 18.09. and time[index].textContent.split(" ")[0]=18.09. then result is true
+          */
       if (time[index].textContent.split(" ")[0] === day_month) {
         idMatchs.push(item.getAttribute("id"));
       }
