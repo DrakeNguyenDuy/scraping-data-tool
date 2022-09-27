@@ -23,3 +23,10 @@ const instance = mysql
   .promise();
 
 exports.instance = instance;
+const connection = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  database: "dw_result_football",
+  password: "1234",
+})
+exports.connection= connection

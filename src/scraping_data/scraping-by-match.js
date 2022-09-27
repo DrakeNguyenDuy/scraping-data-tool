@@ -2,6 +2,7 @@ const fs = require("fs");
 const stringQuery = require("../../sql/query_string");
 const pool = require("../connection/index");
 const uftf = require("../scraping_data/upload_file_to_ftp");
+const { loadToStagging } = require("../stagging");
 /*
   function scrapingResutByMatch() used to sraping result by the match with paramaster
   - listID: list id of all math in a year
@@ -112,11 +113,15 @@ const scrapingResutByMatch = async (
         } catch (error) {
           console.log("error while get status");
         }
+        const dateTime = date_and_time.split(" ");
+        console.log(dateTime[0]);
         row += `${listID[order]},${
           nameleague_and_round.split("-")[0]
-        },${homeTeam},${awayTeam},${date_and_time.split(" ")[0]},${
-          date_and_time.split(" ")[1]
-        },${goalHomeTeam},${goalAwayTeam},${referee},${venue}, ${attendance}, ${
+        },${homeTeam},${awayTeam},${dateTime[1]},${dateTime[0].split(".")[2]}-${
+          dateTime[0].split(".")[1]
+        }-${
+          dateTime[0].split(".")[0]
+        },${goalHomeTeam},${goalAwayTeam},${referee},${venue}, ${attendance.split(" ")[0]}${attendance.split(" ")[1]}, ${
           nameleague_and_round.split("-")[1]
         },${status}\r\n`;
         /*
@@ -177,6 +182,7 @@ const scrapingResutByMatch = async (
         source_location,
         name_file
       );
+      loadToStagging()
       console.log("=>", rows);
       browser.close();
     }

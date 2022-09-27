@@ -41,3 +41,7 @@ venue = if(@venue='', 'unknown', @venue),
 attendance = if(@attendance='', 'unknown', @attendance),
 round = if(@round = '', 'unknown', @round), 
 status = if(@status='', 'unknown', @status);
+
+
+insert into dw_result_football.result_football (id_match, name_league, home_team, away_team, time_start, match_day, goal_home_team,
+goal_away_team, referee, venue, attendance, round, status ) select * from stagging_result_football.result_football;

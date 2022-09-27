@@ -1,7 +1,7 @@
 const fs = require("fs");
 const queryString = require("../../sql/query_string");
 const sim = require("./scraping_id_match");
-const poolIns = require("../connection/index")
+const poolIns = require("../connection/index");
 /*
  */
 (async () => {
@@ -20,12 +20,13 @@ const poolIns = require("../connection/index")
   */
   const year_leagues = `${year}-${next_year}`;
   const stringQuery = queryString.queryGetConfigPE(year_leagues, full_name);
-  const promisePool = pool.promise();
+  const promisePool = pool;
   const [rows, fiels] = await promisePool.query(stringQuery);
+  console.log(rows);
   // create name file
   const name_file = `${
     rows[0].source_name
-  }_result_football.${year}-${9}-${18}_scraping-${rows[0].ftp.substring(
+  }_result_football.${year}-${month}-${day}_scraping-${rows[0].ftp.substring(
     6,
     rows[0].ftp.length
   )}.csv`;
