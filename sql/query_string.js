@@ -43,7 +43,8 @@ const loadRecordToDatabase =
   goal_away_team, referee, venue, attendance, round, status ) select * from stagging_result_football.result_football`;
 exports.loadRecordToDatabase = loadRecordToDatabase;
 //string load record from csv file to stagging
-const loadRecordToStagging = (
+const loadRecordToStagging =
+ (
   nameFile
 ) => `load data infile "C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/${nameFile}" 
 into table stagging_result_football.result_football fields terminated by ","  lines terminated by "\n" ignore 1 rows 
@@ -72,3 +73,4 @@ exports.deleteRecords = deleteRecords;
 const updateStatusSrapinglog = (newStatus, file_name) =>
   `update dw_result_football.scraping_log set status=${newStatus} where file_name = '${file_name}'`;
 exports.updateStatusSrapinglog = updateStatusSrapinglog;
+
