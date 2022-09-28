@@ -71,3 +71,102 @@ insert into branch_source_name (id_source_name, name_branch, branch ) values (1,
 insert into branch_source_name (id_source_name, name_branch, branch ) values (1, "PEM-2022-2023", "/match/");
 insert into configration (id_source_name, source_location, ftp, id_contact) values (1, 'D:/js/scraping/ver-01/results', 'ftpupload.net',1 );
 insert into configration (id_source_name, source_location, ftp, id_contact) values (1, 'D:/js/scraping/ver-01/results', 'techdak.studio',2 );
+
+/*
+edit table result football from all in to multi dimention
+*/
+/*
+table date dim
+*/
+CREATE TABLE date_dim (
+    id INTEGER AUTO_INCREMENT primary key,
+    day INTEGER not null,
+    month INTEGER not null,
+    year INTEGER not null
+);
+/*
+create table time dim
+*/
+CREATE TABLE time_dim (
+    id INTEGER AUTO_INCREMENT PRIMARY KEY,
+    hour INTEGER NOT NULL,
+    miniute INTEGER NOT NULL,
+    second INTEGER NOT NULL
+);
+/*
+create table 
+*/
+CREATE TABLE league_dim (
+	id integer auto_increment primary key,
+    name_league VARCHAR(100) NOT NULL,
+    code varchar(50) default null,
+    year_first_league integer default null
+);
+/*
+create table team dim
+*/
+CREATE TABLE team_dim (
+    id INTEGER AUTO_INCREMENT PRIMARY KEY,
+    name_team varchar(100) not null,
+    code_team VARCHAR(50) default null
+);
+/*
+create table round dimention
+*/
+CREATE TABLE round_dim (
+    id INTEGER AUTO_INCREMENT PRIMARY KEY,
+    name_round VARCHAR(25)
+);
+/*
+create table venue dim
+*/
+CREATE TABLE venue_dim (
+    id INTEGER AUTO_INCREMENT PRIMARY KEY,
+    name_venue VARCHAR(100) NOT NULL
+);
+/*create table status dim*/
+CREATE TABLE status_dim (
+    id INTEGER AUTO_INCREMENT PRIMARY KEY,
+    name_status VARCHAR(25)
+);
+/*
+create table result football (fact)
+*/
+CREATE TABLE result_football (
+    id INTEGER AUTO_INCREMENT PRIMARY KEY,
+    id_match VARCHAR(25) not null,
+    id_league INTEGER NOT NULL,
+    id_date_start INTEGER default null,
+    id_time_start integer default null,
+    id_home_team integer not null,
+    id_away_team integer not null,
+    id_venue integer default null,
+    id_round integer default null,
+    id_status integer default null,
+    id_time_available integer default 0,
+    id_date_available integer default 0,
+    isDelete boolean default false
+);
+alter table result_football add foreign key (id_league) references league_dim(id);
+alter table result_football add foreign key (id_date_start) references date_dim(id);
+alter table result_football add foreign key (id_time_start) references time_dim(id);
+alter table result_football add foreign key (id_home_team) references team_dim(id);
+alter table result_football add foreign key (id_away_team) references team_dim(id);
+alter table result_football add foreign key (id_venue) references venue_dim(id);
+alter table result_football add foreign key (id_round) references round_dim(id);
+alter table result_football add foreign key (id_time_available) references time_dim(id);
+alter table result_football add foreign key (id_date_available) references date_dim(id); 
+alter table result_football add foreign key (id_status) references status_dim(id);
+/*
+insert to table 
+*/
+insert into time_dim (hour, miniute, second) values(24, 24, 59);
+insert into date_dim (day, month, year) values(31,12,9999);
+insert into status_dim (name_status) value("Finished");
+
+insert into time_dim (hour, miniute, second) select distinct hour(time_start), minute(time_start), second(time_start) from stagging_result_football.result_football;
+insert into date_dim (day, month, year) select distinct day(match_day) , month(match_day), year(match_day) from stagging_result_football.result_football;
+insert into league_dim(name_league) select distinct name_league from stagging_result_football.result_football;
+insert into team_dim (name_team) select distinct home_team from stagging_result_football.result_football;
+insert into round_dim (name_round) select distinct round from stagging_result_football.result_football;
+insert into venue_dim (name_venue) select distinct venue from stagging_result_football.result_football;

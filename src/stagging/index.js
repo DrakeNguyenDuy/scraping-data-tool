@@ -11,12 +11,16 @@ const loadToStagging = () => {
   //get file to load to stagging
   instance.query(stringQuery.loadLogFile, (err, results, fields) => {
     if (err) throw err;
-    test = results;
-    results.forEach((item) => {
+    results.forEach((item, index) => {
       console.log(`Coping file ${item.file_name} to folder load`);
       copyFile(item.file_name, instance);
+      if (index == results.length - 1) {
+        instance.execute(stringQuery.loadRecordToDatabase(), (err, result, fields)=>{
+          if(err) throw err
+          console.log("load to database success");
+        })
+      }
     });
   });
 };
-loadToStagging();
 exports.loadToStagging = loadToStagging;

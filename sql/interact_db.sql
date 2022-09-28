@@ -1,4 +1,5 @@
 use stagging_result_football;
+use dw_result_football;
 CREATE TABLE result_football (
     id_match VARCHAR(100) NOT NULL,
     name_league VARCHAR(50) DEFAULT 'unknown',
@@ -22,9 +23,9 @@ name_league = nullif(@vname_league, 'unknown'), home_team = nullif(@vhome_team, 
 match_day = nullif(@vmatch_day, null), goal_home_team = nullif(@vgoal_home_team, 0),goal_away_team = nullif(@vgoal_away_team, 0), referee=nullif(@vreferee, 'unknow'),
 venue = nullif(@vvenue, 'unknown'), attendance = nullif(@vattendance, 'unknown'), round = nullif(@vround, 'unknown'), status = nullif(@vstatus, 'unknown'));
 
+delete from result_football;
 
-
-load data infile "C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/all copy.csv" 
+load data infile "C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/all_edited.csv" 
 into table result_football fields terminated by ","  lines terminated by "\n" ignore 1 rows 
 (@id_match, @name_league, @home_team, @away_team, @time_start,
 @match_day, @goal_home_team, @goal_away_team, @referee, @venue, @attendance, @round, @status) 
@@ -45,3 +46,5 @@ status = if(@status='', 'unknown', @status);
 
 insert into dw_result_football.result_football (id_match, name_league, home_team, away_team, time_start, match_day, goal_home_team,
 goal_away_team, referee, venue, attendance, round, status ) select * from stagging_result_football.result_football;
+
+delete from stagging_result_football.result_football;
